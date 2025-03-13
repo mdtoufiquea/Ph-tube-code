@@ -6,6 +6,12 @@
     <title>Ph-tube-code</title> 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style>
+    .active{
+        background-color: red;
+        color: white;
+    }
+</style>
 </head>
 <body class="container mx-auto">
     <header>
@@ -23,7 +29,7 @@
 
        <div id="category-container" class="flex justify-center py-5 gap-8">
        <div>
-        <button onclick="loadVideo()" class="btn btn-sm bg-[#FF1F3D] text-white">All</button>
+        <button id="btn-all" onclick="loadVideo()" class="btn btn-sm bg-[#FF1F3D] text-white">All</button>
        </div>
        </div>
         

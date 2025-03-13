@@ -1,10 +1,19 @@
 console.log('file is connected')
 
+function removeActiveBtn(){
+  const remove = document.getElementsByClassName('active')
+  for( let btn of remove){
+    btn.classList.remove('active')
+  }
+}
+
 function loadCategories(){
 
     fetch("https://openapi.programming-hero.com/api/phero-tube/categories")
     .then(res => res.json())
-    .then(data => displayCategories(data.categories))
+    .then(data => {
+      displayCategories(data.categories)
+    })
 }
 
 function displayCategories(categories){
@@ -13,7 +22,7 @@ function displayCategories(categories){
     for(let cat of categories){
        const div = document.createElement("div")
        div.innerHTML= `
-       <button  onclick="loadCategoryVideos(${cat.category_id})" class="btn btn-sm hover:bg-[#FF1F3D]">${cat.category}</button>
+       <button id ="btn-${cat.category_id}"   onclick="loadCategoryVideos(${cat.category_id})" class="btn btn-sm hover:bg-[#FF1F3D]">${cat.category}</button>
         
        `
        categoryContainer.appendChild(div)
@@ -88,11 +97,11 @@ const loadCategoryVideos = (id) => {
 
   fetch(url)
   .then(res => res.json())
-  .then(data => displayVideo(data.category))
-}
-
-function clicked(category_id){
-
-  document.getElementById(category_id).style.backgroundColor = 'red'
-
+  .then(data => {
+    
+    removeActiveBtn()
+    const clickedBtn = document.getElementById(`btn-${id}`)
+      clickedBtn.classList.add('active')
+    displayVideo(data.category)
+  })
 }
